@@ -73,6 +73,33 @@
             color: #fda085;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 70px;
@@ -451,8 +478,36 @@
                 grid-template-columns: 1fr;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             .nav-menu {
-                gap: 15px;
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 20px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 12px 0;
+                font-size: 1.1em;
             }
 
             .product-card {
@@ -468,6 +523,14 @@
         @media (max-width: 480px) {
             .product-card {
                 min-width: 220px;
+            }
+
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
             }
         }
     </style>
@@ -487,6 +550,11 @@
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#contact">Hubungi Kami</a></li>
             </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
@@ -625,6 +693,26 @@
 
     <script>
         $(document).ready(function() {
+            // Hamburger menu toggle
+            $('.hamburger').on('click', function() {
+                $('.nav-menu').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+
+            // Close menu when clicking on a link
+            $('.nav-menu a').on('click', function() {
+                $('.nav-menu').removeClass('active');
+                $('.hamburger').removeClass('active');
+            });
+
+            // Close menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('nav').length) {
+                    $('.nav-menu').removeClass('active');
+                    $('.hamburger').removeClass('active');
+                }
+            });
+
             // Smooth scrolling
             $('a[href^="#"]').on('click', function(e) {
                 e.preventDefault();

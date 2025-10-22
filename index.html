@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Honey - Madu Alami Terbaik</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #fda085;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #fda085;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(253, 160, 133, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(253, 160, 133, 0.6);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin: 60px 0 40px;
+            color: #333;
+        }
+
+        /* Product Section */
+        .products {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .product-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .product-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .product-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .product-grid::-webkit-scrollbar-thumb {
+            background: #fda085;
+            border-radius: 10px;
+        }
+
+        .product-grid::-webkit-scrollbar-thumb:hover {
+            background: #ff8c6b;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            min-width: 280px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .honey-bottle {
+            width: 80px;
+            height: 160px;
+            background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+            border-radius: 10px 10px 15px 15px;
+            position: relative;
+        }
+
+        .honey-cap {
+            width: 60px;
+            height: 25px;
+            background: #8b4513;
+            border-radius: 5px;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+        }
+
+        .honey-accent {
+            width: 40px;
+            height: 40px;
+            background: #ff8c00;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.6;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: #fda085;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.3em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: white;
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Story Section */
+        .story {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-image {
+            background: #f5f5f5;
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .story-text {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .story-text p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #fda085;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: auto;
+        }
+
+        .footer-logo p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .footer-section p {
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #d4af37;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2a2a2a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                gap: 15px;
+            }
+
+            .product-card {
+                min-width: 250px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-card {
+                min-width: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="df6-removebg-preview.png" alt="Logo">
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Rumah</a></li>
+                <li><a href="#products">Toko</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#contact">Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <img src="df7.jpg" alt="Hero Background" class="hero-bg">
+        <div class="hero-content">
+            <h1>Raw Honey Terbaik untuk Tubuh Sehat dan Bugar</h1>
+            <p>Dapatkan manfaat luar biasa dari madu alami murni kami yang dipanen langsung dari peternakan lebah terpercaya. Kaya akan nutrisi, antioksidan, dan enzim alami yang baik untuk kesehatan Anda.</p>
+            <a href="#products" class="cta-button">Belanja Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2 class="section-title">Produk</h2>
+        <div class="products">
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="df1-removebg-preview.png" alt="Raw Honey">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Madu</div>
+                        <div class="product-name">Raw Honey Alami, Murni, & Organik</div>
+                        <div class="product-price">Rp 100.000</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>499+ Terjual</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="df1-removebg-preview.png" alt="Raw Honey">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Madu</div>
+                        <div class="product-name">Raw Honey Premium</div>
+                        <div class="product-price">Rp 150.000</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>350+ Terjual</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="df1-removebg-preview.png" alt="Raw Honey">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Madu</div>
+                        <div class="product-name">Raw Honey Hutan</div>
+                        <div class="product-price">Rp 120.000</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>280+ Terjual</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="df1-removebg-preview.png" alt="Raw Honey">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Madu</div>
+                        <div class="product-name">Raw Honey Organik Plus</div>
+                        <div class="product-price">Rp 180.000</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>420+ Terjual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>Kisah Kami</h2>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="story-image">
+            <img src="gunung.png" alt="Story">
+        </div>
+        <div class="story-text">
+            <p><span class="highlight">🍯 Logo Lebah - Bukit Putuan</span></p>
+            <p>Dimulai dari dua teman yang mengikuti minat dan keinginan yang dialami selama beberapa tahun terakhir, kami adalah orang yang bisa melakukan lebih banyak hal dengan mencoba hal-hal baru. Kami membahas lebah saya, mulai bekerja dengan lebah, perilaku perilaku lebah, cara penyerbukan mereka, dan bagaimana hidup bersama lebah.</p>
+            <p>Kontraktor umum kami melihat salah satu gambar koloni madu kami dan bertanya "ini akan menjadi cara yang bagus" dan berarti untuk mengumpulkan lahan, dll...</p>
+            <p>Kami percaya kami harus terus ini dapat mempertahankan ekosistem yang sehat, tanpa berbahaya, berapa harga menggunakan Pestisida, penyimpangan, dan nutrisi yang mereka kumpulkan dari produk hutan nya alami yang mereka perjuangkan, membuat kesehatan dan kebugaran hidup</p>
+            <p><span class="highlight">🍯 Dan kami = Pada Kolektif</span></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section footer-logo">
+                <img src="df6-removebg-preview.png" alt="Fathan Store Logo">
+                <p>Madu alami terbaik dari peternakan lebah terpercaya. Kualitas premium untuk kesehatan Anda.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="WhatsApp">📱</a>
+                </div>
+                <p style="margin-top: 20px;">Email: info@fathantstore.com</p>
+                <p>Phone: +62 812-3456-7890</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Head Office</h3>
+                <p>Jl. Bukit Putuan No. 123</p>
+                <p>Jakarta, Indonesia 12345</p>
+                <p style="margin-top: 20px;">Buka Setiap Hari</p>
+                <p>09:00 - 18:00 WIB</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>CONTACT US FOR DETAIL INFO</p>
+            <p>&copy; 2025 Raw Honey - Fathan Store. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Smooth scrolling
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this.getAttribute('href'));
+                if(target.length) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 70
+                    }, 1000);
+                }
+            });
+
+            // Product card animation
+            $('.product-card').hover(
+                function() {
+                    $(this).find('.honey-accent').animate({
+                        bottom: '30px',
+                        right: '30px'
+                    }, 200);
+                },
+                function() {
+                    $(this).find('.honey-accent').animate({
+                        bottom: '20px',
+                        right: '20px'
+                    }, 200);
+                }
+            );
+
+            // Header shadow on scroll
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('header').css('box-shadow', '0 4px 10px rgba(0,0,0,0.15)');
+                } else {
+                    $('header').css('box-shadow', '0 2px 5px rgba(0,0,0,0.1)');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
